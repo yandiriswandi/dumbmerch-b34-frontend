@@ -1,10 +1,6 @@
-//import css react bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/styles.css';
-// import necessary object from react-router-dom
-import { Routes, Route, Link } from 'react-router-dom';
-
-// import "pages" component here
+import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
@@ -28,7 +24,6 @@ function App() {
         <Route path="/complain" element={<Complain />} />
         <Route path="/complain-admin" element={<Complain_admin />} />
       </Routes>
-   
   );
 }
 

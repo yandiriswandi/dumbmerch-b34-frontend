@@ -1,11 +1,11 @@
-// import React from 'react'
 import { Container,Navbar,Nav, Table,Pagination,Modal,Button} from 'react-bootstrap';
 import {Link } from 'react-router-dom';
 import CategoryData from '../dummyData/category'
-//import data from localstorage
 import logo from './Frame.png';
-// import useState for modal
 import React, { useState } from 'react';
+import DeleteData from '../components/modal/DeleteData';
+import EditCategory from '../components/modal/EditCategory';
+import AddCategory from '../components/modal/AddCategory';
 
 function Category() {
     let active = 2;
@@ -59,27 +59,6 @@ function Category() {
             <div className='h3 text-light fw-bold mb-4'>List Category</div>
             <div className='add'>
             <button  type="button" className="btn-delete btn-success ms-2 fw-bold" onClick={handleShowAdd}>Add Product</button>
-              <Modal show={showAdd} onHide={handleCloseAdd}>
-                <Modal.Header >
-                  <Modal.Title>Add Data</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                <form>
-                  <div class="mb-3">
-                    <label for="category" class="form-label">Category Name</label>
-                    <input type="text" class="form-control" id="category"></input>
-                  </div>
-                </form>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button variant="success" onClick={handleCloseAdd}>
-                    Add Product
-                  </Button>
-                  <Button variant="danger" onClick={handleCloseAdd}>
-                    Cancel
-                  </Button>
-                </Modal.Footer>
-              </Modal>
             <Table className='mt-3' striped bordered hover variant="dark">
                 <thead>
                     <tr>
@@ -94,43 +73,14 @@ function Category() {
                     <td>{category.id}</td>
                     <td>{category.category_product}</td>
                     <td className='category-button text-center'>
-                    <button type="button" className="btn-edit btn-success fw-bold" onClick={handleShowEdit}>Edit</button>
-                          <Modal show={showEdit} onHide={handleCloseEdit}>
-                              <Modal.Header >
-                                <Modal.Title>Edit Data</Modal.Title>
-                              </Modal.Header>
-                              <Modal.Body>
-                              <form>
-                                <div class="mb-3">
-                                  <label for="Category" class="form-label">Category Name</label>
-                                  <input type="text" class="form-control" id="category"></input>
-                                </div>
-                              </form>
-                              </Modal.Body>
-                              <Modal.Footer>
-                                <Button variant="success" onClick={handleCloseEdit}>
-                                  Edit
-                                </Button>
-                                <Button variant="danger" onClick={handleCloseEdit}>
-                                  Cancel
-                                </Button>
-                              </Modal.Footer>
-                          </Modal>
+                        <button 
+                            type="button" 
+                            className="btn-edit btn-success fw-bold" 
+                            onClick={handleShowEdit}
+                        >
+                            Edit
+                        </button>
                         <button type="button" className="btn-delete btn-danger ms-2 fw-bold" onClick={handleShow}>Delete</button>
-                        <Modal show={show} onHide={handleClose}>
-                          <Modal.Header >
-                            <Modal.Title>Delete Data</Modal.Title>
-                          </Modal.Header>
-                          <Modal.Body>Are you sure you want to delete this data ?</Modal.Body>
-                          <Modal.Footer>
-                            <Button variant="success" onClick={handleClose}>
-                              Yes
-                            </Button>
-                            <Button variant="danger" onClick={handleClose}>
-                              No
-                            </Button>
-                          </Modal.Footer>
-                        </Modal>
                     </td>
                     </tr>
                 </tbody>
@@ -142,6 +92,18 @@ function Category() {
             <br />
         </div>
     </div>
+    <DeleteData  
+      show={show}
+      handleClose={handleClose}
+    />
+    <EditCategory  
+      showEdit={showEdit}
+      handleCloseEdit={handleCloseEdit}
+    />
+    <AddCategory  
+      showAdd={showAdd}
+      handleCloseAdd={handleCloseAdd}
+    />
   </div>
   )
 }

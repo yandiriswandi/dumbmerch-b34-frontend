@@ -5,6 +5,7 @@ import ProductData  from '../dummyData/product'
 import logo from './Frame.png';
 // import useState for modal
 import React, { useState } from 'react';
+import rupiahFormat from "rupiah-format";
 
 function Product() {
     let active = 2;
@@ -46,7 +47,7 @@ function Product() {
                 <Nav className="me-auto">
                 </Nav>
                 <Nav>
-                <Nav.Link ><Link className='text-decoration-none text-light fw-bold ' to="/complain-admin">Complain</Link></Nav.Link>
+                <Nav.Link as={Link}  to="/complain-admin" className='text-decoration-none text-light fw-bold' >Complain</Nav.Link>
                 <Nav.Link ><Link className='text-decoration-none text-light fw-bold ' to="/category">Category</Link></Nav.Link>
                 <Nav.Link ><Link className='text-decoration-none text-danger fw-bold ' to="/product">Product</Link></Nav.Link>
                 <Nav.Link ><Link className='text-decoration-none text-light fw-bold ' to="/">Logout</Link></Nav.Link>
@@ -103,10 +104,10 @@ function Product() {
                 </Modal.Footer>
               </Modal>
             </div>
-            <Table className='table-product table-sm mt-3' striped bordered hover variant="dark">
+            <Table className='table-product  mt-3' striped bordered hover variant="dark">
                 <thead>
                     <tr>
-                    <th>No</th>
+                    <th  width="1%" className="text-center">No</th>
                     <th className='col-md-6'>Photo</th>
                     <th>Product Name</th>
                     <th>Product Desc</th>
@@ -115,16 +116,25 @@ function Product() {
                     <th className='text-center'>Action</th>
                     </tr>
                 </thead>
-                {ProductData.map((product)=>(
+                {ProductData.map((product, index)=>(
                 <tbody key={product.id}>
                     <tr>
-                    <td>{product.id}</td>
-                    <td ><p className='photo'>{product.image}</p></td>
-                    <td>{product.produk}</td>
-                    <td>{product.produk}</td>
-                    <td>{product.harga}</td>
-                    <td>{product.stock}</td>
-                    <td className='product-button text-center'>
+                    <td className="align-middle text-center">{index + 1}</td>
+                    <td >
+                      <img
+                        src={product.image}
+                        style={{
+                          width: "100%",
+                          height: "100px",
+                          objectFit: "cover",
+                        }}
+                      />
+                    </td>
+                    <td className="align-middle">{product.produk}</td>
+                    <td className="align-middle">{product.produk}</td>
+                    <td className="align-middle">{rupiahFormat.convert(product.harga)}</td>
+                    <td className="align-middle">{product.stock}</td>
+                    <td className='product-button text-center align-middle'>
                         <button type="button" className='btn-edit btn-success fw-bold' onClick={handleShowEdit}>Edit</button>
                           <Modal show={showEdit} onHide={handleCloseEdit}>
                               <Modal.Header >
@@ -171,7 +181,7 @@ function Product() {
                               </Modal.Footer>
                           </Modal>
                         <button type="button" className='btn-edit btn-danger fw-bold' onClick={handleShow}>Delete</button>
-                          <Modal show={show} onHide={handleClose}>
+                          <Modal show={show} onHide={handleClose} centered>
                             <Modal.Header >
                               <Modal.Title>Delete Data</Modal.Title>
                             </Modal.Header>
