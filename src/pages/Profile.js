@@ -1,11 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col,Card } from 'react-bootstrap';
 //import data from localstorage
 import logo_middle from '../assets/middle.png';
 import ProductData from '../dummyData/product';
 import Navbar from '../components/Navbar';
+import { Button } from 'react-bootstrap';
+import EditProfile from '../components/modal/EditProfile';
+import { useParams } from "react-router-dom";
 
  function Profile() {
+
+    const [data, setData] = useState(null);
+    // call useParams to get params object
+    const params = useParams();
+  
+    // don't worry about this, we'll cover later
+    useEffect(() => {
+      fetch(`https://jsonplaceholder.typicode.com/users/${params.id}`)
+        .then((response) => response.json())
+        .then((json) => setData(json));
+      return () => {
+        setData(null);
+      };
+    }, []);
+  
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
      
   //ternary operator untuk navbar
   const title = "Profile";
@@ -24,7 +46,7 @@ import Navbar from '../components/Navbar';
             <Col sm={3} className=" pt-1">
                 <div className='name h5 text-danger mt-5'>
                 Name
-                <p class="text-sm-start text-light fw-normal fs-6">Yosep</p>
+                <p class="text-sm-start text-light fw-normal fs-6">{data?.name}</p>
                 </div>
                 <div className='h5 text-danger mt-4'>
                 Email
@@ -44,6 +66,7 @@ import Navbar from '../components/Navbar';
                     kampung cisayong, kecamatan indihiang, desa sukamajukaler, Tasikmalaya, Jawa Barat
                 </p>
                 </div>
+                <Button onClick={handleShow} className="btn-danger mt-4">Edit Profile</Button>
             </Col>
             <Col sm={5} className="card-middle  nopadding">
                 <div className='h3 text-danger fw-bold mb-4'>My Transaction</div>
@@ -69,6 +92,10 @@ import Navbar from '../components/Navbar';
                 </Card>
             </Col>
         </Row>
+        <EditProfile 
+          show={show}
+          handleClose={handleClose}
+        />
         </Container>
     </div>
   )

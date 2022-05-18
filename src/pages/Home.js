@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col,Card } from 'react-bootstrap';
+import { Container, Row, Col,Card, FloatingLabel, Form } from 'react-bootstrap';
 import {Link } from 'react-router-dom';
 import ProductData from '../dummyData/product';
 import rupiahFormat from 'rupiah-format';
@@ -12,6 +12,14 @@ function Home () {
     <Navbar/>
     <Container className='home-product pb-5'>
         <div className='h3 mt-5 text-danger'>Product</div>
+        <div className='sort'>
+        <FloatingLabel controlId="floatingSelectGrid" label="Choose Product by:">
+            <Form.Select aria-label="Floating label select example">
+                <option value="1">Price</option>
+                <option value="2">Qty</option>
+            </Form.Select>
+        </FloatingLabel>
+        </div>
         <Row className='row row-cols-4 mt-4'>
             {ProductData.map((product)=>(
             <Col className='  mt-4' key={product.id}>

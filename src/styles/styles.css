@@ -80,6 +80,7 @@ body{
     background-color: black;
     margin: 0px;
     margin: auto;
+    margin-top: 120px;
 }
 .home-product .card-product{
     border-radius: 10px !important;
@@ -171,6 +172,7 @@ body{
     width: 95%;
     font-size: 11px;
     margin: auto;
+    margin-top: 120px !important;
 }
 .product th,td{
     width: 100px !important;

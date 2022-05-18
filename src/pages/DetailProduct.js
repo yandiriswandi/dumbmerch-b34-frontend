@@ -15,7 +15,7 @@ return (
     <Navbar/>
    <div>
    {ProductData.map((product)=>(
-        <div className='card-detail'>
+        <div className='card-detail mt-5'>
             <div className='detail-left'>
             <img src={product.image} alt=""></img>
             </div>
