@@ -1,11 +1,11 @@
 import { Container,Navbar,Nav, Table,Pagination,Modal,Button} from 'react-bootstrap';
 import {Link } from 'react-router-dom';
 import CategoryData from '../dummyData/category'
-import logo from './Frame.png';
 import React, { useState } from 'react';
 import DeleteData from '../components/modal/DeleteData';
 import EditCategory from '../components/modal/EditCategory';
 import AddCategory from '../components/modal/AddCategory';
+import NavbarAdmin from "../components/NavbarAdmin";
 
 function Category() {
     let active = 2;
@@ -29,32 +29,14 @@ function Category() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    //ternary operator untuk navbar
+    const title = "Category";
+    document.title = "DumbMerch | " + title;
+
   return (
      
     <div>
-         <Navbar className='navbar fixed-top' collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Container>
-            <Navbar.Brand href="/home">
-            <img
-                src={logo}
-                width="30"
-                height="30"
-                className="d-inline-block align-top"
-            />
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="me-auto">
-                </Nav>
-                <Nav>
-                <Nav.Link ><Link className='text-decoration-none text-light fw-bold ' to="/complain-admin">Complain</Link></Nav.Link>
-                <Nav.Link ><Link className='text-decoration-none text-danger fw-bold ' to="/category">Category</Link></Nav.Link>
-                <Nav.Link ><Link className='text-decoration-none text-light fw-bold' to="/product">Product</Link></Nav.Link>
-                <Nav.Link ><Link className='text-decoration-none text-light fw-bold ' to="/">Logout</Link></Nav.Link>
-                </Nav>
-            </Navbar.Collapse>
-            </Container>
-        </Navbar>
+        <NavbarAdmin title={title} />
         <div className='category mt-5'>
             <div className='h3 text-light fw-bold mb-4'>List Category</div>
             <div className='add'>

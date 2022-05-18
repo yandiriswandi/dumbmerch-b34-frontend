@@ -1,36 +1,19 @@
 import React from 'react'
 import { Container,Navbar,Nav, Card} from 'react-bootstrap';
 import {Link } from 'react-router-dom';
-//import data from localstorage
-import logo from './Frame.png';
+import NavbarAdmin from "../components/NavbarAdmin";
+
 
 function Complain_admin() {
+
+  //ternary operator untuk navbar
+  const title = "Complain admin";
+  document.title = "DumbMerch | " + title;
+  
   return (
     <div>
-       <Navbar className='navbar' collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Container>
-            <Navbar.Brand href="/home">
-            <img
-                src={logo}
-                width="30"
-                height="30"
-                className="d-inline-block align-top"
-            />
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="me-auto">
-                </Nav>
-                <Nav>
-                <Nav.Link ><Link className='text-decoration-none text-danger fw-bold ' to="/complain-admin">Complain</Link></Nav.Link>
-                <Nav.Link ><Link className='text-decoration-none text-light fw-bold ' to="/category">Category</Link></Nav.Link>
-                <Nav.Link ><Link className='text-decoration-none text-light fw-bold ' to="/product">Product</Link></Nav.Link>
-                <Nav.Link ><Link className='text-decoration-none text-light fw-bold ' to="/">Logout</Link></Nav.Link>
-                </Nav>
-            </Navbar.Collapse>
-            </Container>
-        </Navbar>
-        <div className='complain'>
+       <NavbarAdmin title={title} />
+        <div className='complain '>
           <div className='border-end complain-left ps-4'>
             <div className='d-flex mt-4'>
                 <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="">

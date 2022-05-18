@@ -1,39 +1,18 @@
 import React from 'react'
-import {Navbar,Nav,Container} from 'react-bootstrap';
-import {Link } from 'react-router-dom';
+
 //import data from localstorage
-import logo from './Frame.png';
+import logo from '../assets/Frame.png';
 import Product from './Product';
 import ProductData from '../dummyData/product';
 import rupiahFormat from 'rupiah-format'
+import Navbar from '../components/Navbar';
 // import ProductData from '../dummyData/product';
 
 
 function DetailProduct() {
 return (
 <div>
-        <Navbar className='navbar' collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Container>
-        <Navbar.Brand href="/home">
-        <img
-            src={logo}
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-        />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-            </Nav>
-            <Nav>
-            <Nav.Link ><Link className='text-decoration-none text-light fw-bold ' to="/">Complain</Link></Nav.Link>
-            <Nav.Link ><Link className='text-decoration-none text-light fw-bold ' to="/profile">Profile</Link></Nav.Link>
-            <Nav.Link ><Link className='text-decoration-none text-light fw-bold ' to="/">Logout</Link></Nav.Link>
-            </Nav>
-        </Navbar.Collapse>
-        </Container>
-    </Navbar>
+    <Navbar/>
    <div>
    {ProductData.map((product)=>(
         <div className='card-detail'>

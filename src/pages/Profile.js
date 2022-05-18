@@ -1,36 +1,19 @@
 import React from 'react'
-import { Container,Navbar,Nav, Row, Col,Card } from 'react-bootstrap';
-import {Link } from 'react-router-dom';
+import { Container, Row, Col,Card } from 'react-bootstrap';
 //import data from localstorage
-import logo from './Frame.png';
-import logo_middle from './middle.png';
+import logo_middle from '../assets/middle.png';
 import ProductData from '../dummyData/product';
+import Navbar from '../components/Navbar';
 
  function Profile() {
+     
+  //ternary operator untuk navbar
+  const title = "Profile";
+  document.title = "DumbMerch | " + title;
+
   return (
     <div>
-        <Navbar className='navbar fixed-top' collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Container>
-            <Navbar.Brand href="/home">
-            <img
-                src={logo}
-                width="30"
-                height="30"
-                className="d-inline-block align-top"
-            />
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="me-auto">
-                </Nav>
-                <Nav>
-                <Nav.Link ><Link className='text-decoration-none text-light fw-bold ' to="/">Complain</Link></Nav.Link>
-                <Nav.Link ><Link className='text-decoration-none text-danger fw-bold ' to="/profile">Profile</Link></Nav.Link>
-                <Nav.Link ><Link className='text-decoration-none text-light fw-bold ' to="/">Logout</Link></Nav.Link>
-                </Nav>
-            </Navbar.Collapse>
-            </Container>
-        </Navbar>
+      <Navbar title={title}/>
         <Container className='card-profile mt-5 pb-5'>
         <Row>
             <Col sm={4} className=" pb-5">

@@ -1,10 +1,13 @@
 import { Container,Navbar,Nav, Table,Pagination,Modal,Button} from 'react-bootstrap';
 import {Link } from 'react-router-dom';
 import ProductData  from '../dummyData/product'
-import logo from './Frame.png';
+import logo from '../assets/Frame.png';
 import React, { useState } from 'react';
 import rupiahFormat from "rupiah-format";
 import DeleteData from '../components/modal/DeleteData';
+import AddProduct from '../components/modal/AddProduct'
+import EditProduct from '../components/modal/EditProduct';
+import NavbarAdmin from "../components/NavbarAdmin";
 
 function Product() {
     let active = 2;
@@ -28,85 +31,23 @@ function Product() {
     const [showEdit, setShowEdit] = useState(false);
     const handleCloseEdit = () => setShowEdit (false);
     const handleShowEdit = () => setShowEdit (true);
+    //ternary operator untuk navbar
+    const title = "Product";
+    document.title = "DumbMerch | " + title;
+
   return (
      
     <div>
-         <Navbar className='navbar fixed-top' collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Container>
-            <Navbar.Brand as={Link} to="/home">
-            <img
-                src={logo}
-                width="30"
-                height="30"
-                className="d-inline-block align-top"
-            />
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="me-auto">
-                </Nav>
-                <Nav>
-                <Nav.Link as={Link}  to="/complain-admin" className='text-decoration-none text-light fw-bold' >Complain</Nav.Link>
-                <Nav.Link ><Link className='text-decoration-none text-light fw-bold ' to="/category">Category</Link></Nav.Link>
-                <Nav.Link ><Link className='text-decoration-none text-danger fw-bold ' to="/product">Product</Link></Nav.Link>
-                <Nav.Link ><Link className='text-decoration-none text-light fw-bold ' to="/">Logout</Link></Nav.Link>
-                </Nav>
-            </Navbar.Collapse>
-            </Container>
-        </Navbar>
+       <NavbarAdmin title={title} />
         <div className='product mt-5'>
             <div className='h3 text-light fw-bold mb-4'>List Product</div>
             <div className='add'>
             <button  type="button"  className="btn-delete btn-success ms-2 fw-bold" onClick={handleShowAdd}>Add Product</button>
-              <Modal show={showAdd} onHide={handleCloseAdd}>
-                <Modal.Header >
-                  <Modal.Title>Add Data</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                <form>
-                  <div class="mb-3">
-                    <label for="photo" class="form-label">Photo</label>
-                    <input type="file" class="form-control" id="photo" aria-describedby="emailHelp"></input>
-                  </div>
-                  <div class="mb-3">
-                    <label for="productName" class="form-label">Product Name</label>
-                    <input type="text" class="form-control" id="productName"></input>
-                  </div>
-                  <div class="mb-3">
-                    <label for="productDesc" class="form-label">Product Desc</label>
-                    <input type="text" class="form-control" id="productDesc"></input>
-                  </div>
-                  <div class="mb-3">
-                    <label for="price" class="form-label">Price</label>
-                    <input type="text" class="form-control" id="price"></input>
-                  </div>
-                  <div class="mb-3">
-                    <label for="Qty" class="form-label">Qty</label>
-                    <input type="text" class="form-control" id="Qty"></input>
-                  </div>
-                  <label for="Qty" class="form-label">Category</label>
-                  <select class="form-select" aria-label="Default select example">
-                    <option selected>Open this select for Category Product</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
-                </form>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button variant="success" onClick={handleCloseAdd}>
-                    Add Product
-                  </Button>
-                  <Button variant="danger" onClick={handleCloseAdd}>
-                    Cancel
-                  </Button>
-                </Modal.Footer>
-              </Modal>
             </div>
             <Table className='table-product  mt-3' striped bordered hover variant="dark">
                 <thead>
                     <tr>
-                    <th  width="1%" className="text-center">No</th>
+                    <th width="1%" className="text-center">No</th>
                     <th className='col-md-6'>Photo</th>
                     <th>Product Name</th>
                     <th>Product Desc</th>
@@ -131,54 +72,10 @@ function Product() {
                     </td>
                     <td className="align-middle">{product.name}</td>
                     <td className="align-middle">{product.desc}</td>
-                    <td className="align-middle">{rupiahFormat.convert(product.price)}</td>
-                    <td className="align-middle">{product.qty}</td>
+                    <td className="align-middle  text-center">{rupiahFormat.convert(product.price)}</td>
+                    <td className="align-middle  text-center">{product.qty}</td>
                     <td className='product-button text-center align-middle'>
                         <button type="button" className='btn-edit btn-success fw-bold' onClick={handleShowEdit}>Edit</button>
-                          <Modal show={showEdit} onHide={handleCloseEdit}>
-                              <Modal.Header >
-                                <Modal.Title>Edit Data</Modal.Title>
-                              </Modal.Header>
-                              <Modal.Body>
-                              <form>
-                                <div class="mb-3">
-                                  <label for="photo" class="form-label">Photo</label>
-                                  <input type="file" class="form-control" id="photo" aria-describedby="emailHelp"></input>
-                                </div>
-                                <div class="mb-3">
-                                  <label for="productName" class="form-label">Product Name</label>
-                                  <input type="text" class="form-control" id="productName"></input>
-                                </div>
-                                <div class="mb-3">
-                                  <label for="productDesc" class="form-label">Product Desc</label>
-                                  <input type="text" class="form-control" id="productDesc"></input>
-                                </div>
-                                <div class="mb-3">
-                                  <label for="price" class="form-label">Price</label>
-                                  <input type="text" class="form-control" id="price"></input>
-                                </div>
-                                <div class="mb-3">
-                                  <label for="Qty" class="form-label">Qty</label>
-                                  <input type="text" class="form-control" id="Qty"></input>
-                                </div>
-                                <label for="Qty" class="form-label">Category</label>
-                                <select class="form-select" aria-label="Default select example">
-                                  <option selected>Open this select for Category Product</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
-                                </select>
-                              </form>
-                              </Modal.Body>
-                              <Modal.Footer>
-                                <Button variant="success" onClick={handleCloseEdit}>
-                                  Edit
-                                </Button>
-                                <Button variant="danger" onClick={handleCloseEdit}>
-                                  Cancel
-                                </Button>
-                              </Modal.Footer>
-                          </Modal>
                         <button type="button" className='btn-edit btn-danger fw-bold' onClick={handleShow}>Delete</button>
                     </td>
                     </tr>
@@ -193,6 +90,14 @@ function Product() {
         <DeleteData  
           show={show}
           handleClose={handleClose}
+        />
+        <EditProduct  
+          showEdit={showEdit}
+          handleCloseEdit={handleCloseEdit}
+        />
+        <AddProduct 
+          showAdd={showAdd}
+          handleCloseAdd={handleCloseAdd}
         />
     </div>
   )
