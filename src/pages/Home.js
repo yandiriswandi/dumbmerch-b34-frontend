@@ -1,9 +1,9 @@
 import React from 'react'
 import { Container,Navbar,Nav, Row, Col,Card } from 'react-bootstrap';
 import {Link } from 'react-router-dom';
-//import data from localstorage
 import logo from './Frame.png';
 import ProductData from '../dummyData/product';
+import rupiahFormat from 'rupiah-format';
 
 function Home () {
     console.log(ProductData)
@@ -39,10 +39,10 @@ function Home () {
             <Card className='card-product bg-dark'  style={{ width: '18rem' }}>
                 <Card.Img className='image-product' variant="top" src={product.image} />
                 <Card.Body>
-                   <Card.Title><Link className='text-danger text-decoration-none' to="/detail-product">{product.produk}</Link></Card.Title>     
+                   <Card.Title><Link className='text-danger text-decoration-none' to={`/detail-product/` + product.id}>{product.name}</Link></Card.Title>     
                     <Card.Text className='text-light'>  
-                        {product.harga}<br></br>
-                        stock : {product.stock}
+                        {rupiahFormat.convert(product.price)}<br></br>
+                        stock : {product.qty}
                     </Card.Text>
                 </Card.Body>
                 </Card>

@@ -1,11 +1,10 @@
 import { Container,Navbar,Nav, Table,Pagination,Modal,Button} from 'react-bootstrap';
 import {Link } from 'react-router-dom';
 import ProductData  from '../dummyData/product'
-//import data from localstorage
 import logo from './Frame.png';
-// import useState for modal
 import React, { useState } from 'react';
 import rupiahFormat from "rupiah-format";
+import DeleteData from '../components/modal/DeleteData';
 
 function Product() {
     let active = 2;
@@ -34,7 +33,7 @@ function Product() {
     <div>
          <Navbar className='navbar fixed-top' collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
-            <Navbar.Brand href="/home">
+            <Navbar.Brand as={Link} to="/home">
             <img
                 src={logo}
                 width="30"
@@ -130,10 +129,10 @@ function Product() {
                         }}
                       />
                     </td>
-                    <td className="align-middle">{product.produk}</td>
-                    <td className="align-middle">{product.produk}</td>
-                    <td className="align-middle">{rupiahFormat.convert(product.harga)}</td>
-                    <td className="align-middle">{product.stock}</td>
+                    <td className="align-middle">{product.name}</td>
+                    <td className="align-middle">{product.desc}</td>
+                    <td className="align-middle">{rupiahFormat.convert(product.price)}</td>
+                    <td className="align-middle">{product.qty}</td>
                     <td className='product-button text-center align-middle'>
                         <button type="button" className='btn-edit btn-success fw-bold' onClick={handleShowEdit}>Edit</button>
                           <Modal show={showEdit} onHide={handleCloseEdit}>
@@ -181,20 +180,6 @@ function Product() {
                               </Modal.Footer>
                           </Modal>
                         <button type="button" className='btn-edit btn-danger fw-bold' onClick={handleShow}>Delete</button>
-                          <Modal show={show} onHide={handleClose} centered>
-                            <Modal.Header >
-                              <Modal.Title>Delete Data</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>Are you sure you want to delete this data ?</Modal.Body>
-                            <Modal.Footer>
-                              <Button variant="success" onClick={handleClose}>
-                                Yes
-                              </Button>
-                              <Button variant="danger" onClick={handleClose}>
-                                No
-                              </Button>
-                            </Modal.Footer>
-                          </Modal>
                     </td>
                     </tr>
                 </tbody>
@@ -205,6 +190,10 @@ function Product() {
             <Pagination className='pagination'>{items}</Pagination>
             <br />
         </div>
+        <DeleteData  
+          show={show}
+          handleClose={handleClose}
+        />
     </div>
   )
 }

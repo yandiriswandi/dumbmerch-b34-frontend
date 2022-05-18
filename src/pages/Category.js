@@ -92,10 +92,10 @@ function Category() {
             <br />
         </div>
     </div>
-    <DeleteData  
-      show={show}
-      handleClose={handleClose}
-    />
+      <DeleteData  
+        show={show}
+        handleClose={handleClose}
+      />
     <EditCategory  
       showEdit={showEdit}
       handleCloseEdit={handleCloseEdit}
