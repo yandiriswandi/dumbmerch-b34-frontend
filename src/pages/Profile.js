@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar';
 import { Button } from 'react-bootstrap';
 import EditProfile from '../components/modal/EditProfile';
 import { useParams } from "react-router-dom";
+import Customer from '../assets/customer.jpg'
 
  function Profile() {
 
@@ -40,7 +41,7 @@ import { useParams } from "react-router-dom";
         <Row>
             <Col sm={4} className=" pb-5">
             <div className='h3 text-danger fw-bold mb-4'>My Profile</div>
-            <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80" alt="">
+            <img src={Customer} alt="">
             </img>
             </Col>
             <Col sm={3} className=" pt-1">
@@ -50,11 +51,11 @@ import { useParams } from "react-router-dom";
                 </div>
                 <div className='h5 text-danger mt-4'>
                 Email
-                <p class="text-sm-start text-light fw-normal fs-6">Yosepmanuel@yahoo.com</p>
+                <p class="text-sm-start text-light fw-normal fs-6">{data?.email}</p>
                 </div>
                 <div className='h5 text-danger mt-4'>
                 Phone
-                <p class="text-sm-start text-light fw-normal fs-6">089789987456</p>
+                <p class="text-sm-start text-light fw-normal fs-6">{data?.phone}</p>
                 </div>
                 <div className='h5 text-danger mt-4'>
                 Gender
@@ -63,6 +64,7 @@ import { useParams } from "react-router-dom";
                 <div className='h5 text-danger mt-4'>
                 Address
                 <p class="text-sm-start text-light fw-normal fs-6">
+                  {data?.address}
                     kampung cisayong, kecamatan indihiang, desa sukamajukaler, Tasikmalaya, Jawa Barat
                 </p>
                 </div>
